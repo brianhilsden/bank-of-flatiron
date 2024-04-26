@@ -57,29 +57,26 @@ function App() {
     }
   });
 
+  function sortFunction(selectedSortOption){
+    // Function to generate a sorting callback based on the selected sorting option
+    if(selectedSortOption === "description"){
+      return (a, b) => a.description.localeCompare(b.description) // Sorts by description in ascending order.
+    }
+    else if(selectedSortOption === "category"){
+      return (a, b) => a.category.localeCompare(b.category) //Sorts by category in ascending order
+    }
+    else{
+      return () => 0
+    }
+  }
+
   return (
     <div>
       <Header />
       <Search onSearchData={onSearchData} search={search} />
       <Form onSubmitData={onSubmitData} />
-      <Sort
-        handleSort={handleSort}
-        selectedSortOption={selectedSortOption}
-      />
-      <Table
-        data={ 
-          // Sort by descriptions in ascending order
-          selectedSortOption === "description"
-            ? itemsToDisplay.sort((a, b) =>
-                a.description.localeCompare(b.description)
-              )
-            : selectedSortOption === "category"  // Sort by categories in ascending order
-            ? itemsToDisplay.sort((a, b) =>
-                a.category.localeCompare(b.category)
-              ) 
-            : itemsToDisplay // Default to unsorted data on page load
-        }
-      />
+      <Sort handleSort={handleSort} selectedSortOption={selectedSortOption} />
+      <Table data = {data.sort(sortFunction(selectedSortOption))}/>
     </div>
   );
 }
