@@ -6,7 +6,33 @@ import Table from './components/table';
 import { useState } from 'react';
 
 function App() {
-  const [data,setData] = useState([])
+  const defaultData = [
+    {
+      date: "2023-10-04",
+      description: "Grocery Shopping",
+      category: "Groceries",
+      amount: "1500.00"
+    },
+    {
+      date: "2023-10-05",
+      description: "Fuel",
+      category: "Transportation",
+      amount: "1900.00"
+    },
+    {
+      date: "2023-10-06",
+      description: "Electricity Bill",
+      category: "Utilities",
+      amount: "3200.00"
+    },
+    {
+      date: "2023-10-07",
+      description: "Internet Bill",
+      category: "Utilities",
+      amount: "2400.00"
+    }
+  ]
+  const [data,setData] = useState(defaultData)
   const [search,setSearch] = useState("")
 
   function onSubmitData(formData){
@@ -16,10 +42,10 @@ function App() {
   function onSearchData(event){
     setSearch(event.target.value) 
   }
-  
+
   const itemsToDisplay = data.filter(item =>{
     if(search.length > 0){
-      return item.description.includes(search)
+      return item.description.toLowerCase().includes(search.toLowerCase())
     }
     else{
       return true
@@ -33,8 +59,6 @@ function App() {
       <Form onSubmitData = {onSubmitData}/>
       <Table data = {itemsToDisplay} />
     </div>
-    
-
   );
 }
 
