@@ -75,6 +75,13 @@ function App() {
       return () => 0
     }
   }
+  
+  function handleDelete(id){
+    const newData = data.filter((item,index)=>{
+      return index!==id
+    })
+    setData(newData)
+  }
 
   return (
     <div>
@@ -82,7 +89,7 @@ function App() {
       <Search onSearchData={onSearchData} search={search} />
       <Form onSubmitData={onSubmitData} />
       <Sort handleSort={handleSort} selectedSortOption={selectedSortOption} />
-      <Table data = {itemsToDisplay.sort(sortFunction(selectedSortOption))}/>
+      <Table data = {itemsToDisplay.sort(sortFunction(selectedSortOption))} handleDelete={handleDelete}/>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import Row from "./row"
-function Table({data}){
+function Table({data,handleDelete}){
     const mappedData = data.map((item,index)=>{
         return(
-            <Row key={index} date = {item.date} description = {item.description} category = {item.category} amount = {item.amount} />
+            <Row key={index} id={index} date = {item.date} description = {item.description} category = {item.category} amount = {item.amount} handleDelete={handleDelete}/>
         )
     })
     return(
@@ -14,6 +14,7 @@ function Table({data}){
                         <th scope="col">Description</th>
                         <th scope="col">Category</th>
                         <th scope="col">Amount</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
