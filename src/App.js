@@ -65,7 +65,7 @@ function App() {
     else if(selectedSortOption === "category"){
       return (a, b) => a.category.localeCompare(b.category) //Sorts by category in ascending order
     }
-    else if(selectedSortOption === "amount"){ //SOrts by amount in descending order
+    else if(selectedSortOption === "amount"){ //Sorts by amount in descending order
       return (a,b) => b.amount - a.amount
     }
     else if(selectedSortOption === "description"){
