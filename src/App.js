@@ -1,9 +1,10 @@
-import './App.css';
-import Header from './components/header';
-import Search from './components/search';
-import Form from './components/form';
-import Table from './components/table';
-import { useState } from 'react';
+import "./App.css";
+import Header from "./components/header";
+import Search from "./components/search";
+import Form from "./components/form";
+import Sort from "./components/sort";
+import Table from "./components/table";
+import { useState } from "react";
 
 function App() {
   const defaultData = [
@@ -11,53 +12,73 @@ function App() {
       date: "2023-10-04",
       description: "Grocery Shopping",
       category: "Groceries",
-      amount: "1500.00"
+      amount: "1500.00",
     },
     {
       date: "2023-10-05",
       description: "Fuel",
       category: "Transportation",
-      amount: "1900.00"
+      amount: "1900.00",
     },
     {
       date: "2023-10-06",
       description: "Electricity Bill",
       category: "Utilities",
-      amount: "3200.00"
+      amount: "3200.00",
     },
     {
       date: "2023-10-07",
       description: "Internet Bill",
       category: "Utilities",
-      amount: "2400.00"
-    }
-  ]
-  const [data,setData] = useState(defaultData)
-  const [search,setSearch] = useState("")
+      amount: "2400.00",
+    },
+  ];
+  const [data, setData] = useState(defaultData);
+  const [search, setSearch] = useState("");
+  const [selectedSortOption, setSelectedSortOption] = useState("");
 
-  function onSubmitData(formData){
-    setData(data=> ([...data,formData]))
+  function onSubmitData(formData) {
+    setData((data) => [...data, formData]);
   }
 
-  function onSearchData(event){
-    setSearch(event.target.value) 
+  function onSearchData(event) {
+    setSearch(event.target.value);
   }
 
-  const itemsToDisplay = data.filter(item =>{
-    if(search.length > 0){
-      return item.description.toLowerCase().includes(search.toLowerCase())
+  function handleSort(event) {
+    setSelectedSortOption(event.target.value);
+  }
+  const itemsToDisplay = data.filter((item) => {
+    if (search.length > 0) {
+      return item.description.toLowerCase().includes(search.toLowerCase());
+    } else {
+      return true;
     }
-    else{
-      return true
-    }
-  })
-  
+  });
+
   return (
     <div>
       <Header />
-      <Search onSearchData = {onSearchData} search={search} />
-      <Form onSubmitData = {onSubmitData}/>
-      <Table data = {itemsToDisplay} />
+      <Search onSearchData={onSearchData} search={search} />
+      <Form onSubmitData={onSubmitData} />
+      <Sort
+        handleSort={handleSort}
+        selectedSortOption={selectedSortOption}
+      />
+      <Table
+        data={ 
+          // Sort by descriptions in ascending order
+          selectedSortOption === "description"
+            ? itemsToDisplay.sort((a, b) =>
+                a.description.localeCompare(b.description)
+              )
+            : selectedSortOption === "category"  // Sort by categories in ascending order
+            ? itemsToDisplay.sort((a, b) =>
+                a.category.localeCompare(b.category)
+              ) 
+            : itemsToDisplay // Default to unsorted data on page load
+        }
+      />
     </div>
   );
 }
