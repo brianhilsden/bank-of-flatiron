@@ -23,7 +23,7 @@ function Form({onSubmitData}){
         })
     }
     return(
-        <form className="row g-3 mt-3 mx-auto p-2" style={{ border: "1px solid lightgrey" }} onSubmit={handleSubmit}>
+        <form className="row g-2 mt-2 mx-auto p-2" style={{ border: "1px solid lightgrey" }} onSubmit={handleSubmit}>
             <div className="col-md-3 d-flex align-items-center">
                 <label className="me-2">Date:</label>
                 <input type="date" className="form-control" name="date" value={formData.date} onChange={handleChange} />

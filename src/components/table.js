@@ -6,7 +6,7 @@ function Table({data}){
         )
     })
     return(
-        <div className="mt-3">
+        <div className="mt-1">
             <table className="table table-striped text-center table-bordered table-hover">
                 <thead>
                     <tr>

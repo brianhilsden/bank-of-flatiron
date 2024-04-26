@@ -1,6 +1,6 @@
 function Sort({selectedSortOption,handleSort}){
     return(
-        <select className="form-select" aria-label="Default select example" value={selectedSortOption} onChange={handleSort}>
+        <select className="form-select mt-3" aria-label="Default select example" value={selectedSortOption} onChange={handleSort}>
         <option >Sort Transactions by</option>
         <option value="date">date</option>
         <option value="category">category</option>
