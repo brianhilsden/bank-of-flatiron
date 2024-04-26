@@ -9,16 +9,11 @@ import { useState } from "react";
 function App() {
   const defaultData = [
     {
-      date: "2024-03-04",
-      description: "Grocery Shopping",
-      category: "Groceries",
-      amount: "1500.00",
-    },
-    {
-      date: "2024-03-01",
-      description: "Fuel",
-      category: "Transportation",
-      amount: "1900.00",
+      date: "2024-01-31",
+      description: "Internet Bill",
+      category: "Utilities",
+      category: "Entertainment",
+      amount: "2400.00",
     },
     {
       date: "2024-02-06",
@@ -27,11 +22,16 @@ function App() {
       amount: "3200.00",
     },
     {
-      date: "2024-01-31",
-      description: "Internet Bill",
-      category: "Utilities",
-      category: "Entertainment",
-      amount: "2400.00",
+      date: "2024-03-01",
+      description: "Fuel",
+      category: "Transportation",
+      amount: "1900.00",
+    },
+    {
+      date: "2024-03-04",
+      description: "Grocery Shopping",
+      category: "Groceries",
+      amount: "1500.00",
     }
   ];
   const [data, setData] = useState(defaultData);
@@ -59,11 +59,17 @@ function App() {
 
   function sortFunction(selectedSortOption){
     // Function to generate a sorting callback based on the selected sorting option
-    if(selectedSortOption === "description"){
-      return (a, b) => a.description.localeCompare(b.description) // Sorts by description in ascending order.
+    if(selectedSortOption === "date"){
+      return (a,b) => b.date.localeCompare(a.date) //Sorts by date in descending order
     }
     else if(selectedSortOption === "category"){
       return (a, b) => a.category.localeCompare(b.category) //Sorts by category in ascending order
+    }
+    else if(selectedSortOption === "amount"){ //SOrts by amount in descending order
+      return (a,b) => b.amount - a.amount
+    }
+    else if(selectedSortOption === "description"){
+      return (a, b) => a.description.localeCompare(b.description) // Sorts by description in ascending order.
     }
     else{
       return () => 0
@@ -76,7 +82,7 @@ function App() {
       <Search onSearchData={onSearchData} search={search} />
       <Form onSubmitData={onSubmitData} />
       <Sort handleSort={handleSort} selectedSortOption={selectedSortOption} />
-      <Table data = {data.sort(sortFunction(selectedSortOption))}/>
+      <Table data = {itemsToDisplay.sort(sortFunction(selectedSortOption))}/>
     </div>
   );
 }
