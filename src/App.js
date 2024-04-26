@@ -72,7 +72,7 @@ function App() {
       return (a, b) => a.description.localeCompare(b.description) // Sorts by description in ascending order.
     }
     else{
-      return () => 0
+      return () => 0 //Returns default unsorted array
     }
   }
   
