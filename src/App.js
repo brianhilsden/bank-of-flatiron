@@ -9,29 +9,30 @@ import { useState } from "react";
 function App() {
   const defaultData = [
     {
-      date: "2023-10-04",
+      date: "2024-03-04",
       description: "Grocery Shopping",
       category: "Groceries",
       amount: "1500.00",
     },
     {
-      date: "2023-10-05",
+      date: "2024-03-01",
       description: "Fuel",
       category: "Transportation",
       amount: "1900.00",
     },
     {
-      date: "2023-10-06",
+      date: "2024-02-06",
       description: "Electricity Bill",
       category: "Utilities",
       amount: "3200.00",
     },
     {
-      date: "2023-10-07",
+      date: "2024-01-31",
       description: "Internet Bill",
       category: "Utilities",
+      category: "Entertainment",
       amount: "2400.00",
-    },
+    }
   ];
   const [data, setData] = useState(defaultData);
   const [search, setSearch] = useState("");
