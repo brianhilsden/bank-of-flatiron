@@ -86,6 +86,7 @@ function App() {
   return (
     <div>
       <Header />
+      Hello
       <Search onSearchData={onSearchData} search={search} />
       <Form onSubmitData={onSubmitData} />
       <Sort handleSort={handleSort} selectedSortOption={selectedSortOption} />
