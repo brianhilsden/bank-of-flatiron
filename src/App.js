@@ -86,12 +86,9 @@ function App() {
   return (
     <div>
       <Header />
-  trial2
-      
-fefef
       Hello
- dev
       <Search onSearchData={onSearchData} search={search} />
+      cdvfvvffv
       <Form onSubmitData={onSubmitData} />
       <Sort handleSort={handleSort} selectedSortOption={selectedSortOption} />
       <Table data = {itemsToDisplay.sort(sortFunction(selectedSortOption))} handleDelete={handleDelete}/>
