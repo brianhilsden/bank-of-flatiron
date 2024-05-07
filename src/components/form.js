@@ -14,6 +14,7 @@ function Form({onSubmitData}){
     function handleSubmit(event){
         event.preventDefault();
         onSubmitData(formData);
+        
 
         setFormData({   //Resets the form after submitting
             date:"",

@@ -1,8 +1,14 @@
 import Row from "./row"
 function Table({data,handleDelete}){
-    const mappedData = data.map((item,index)=>{
+    const rows = data.map((item,index)=>{
         return(
-            <Row key={index} id={index} date = {item.date} description = {item.description} category = {item.category} amount = {item.amount} handleDelete={handleDelete}/>
+        <tr key={index}>
+            <td>{date}</td>
+            <td>{description}</td>
+            <td>{category}</td>
+            <td>{amount}</td>
+            <td><button className="btn btn-danger" onClick={()=>handleDelete(index)}>Delete</button></td>
+        </tr> 
         )
     })
     return(
@@ -18,7 +24,7 @@ function Table({data,handleDelete}){
                     </tr>
                 </thead>
                 <tbody>
-                    {mappedData}
+                    {rows}
                 </tbody>
             </table>
         </div>
